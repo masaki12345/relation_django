@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import multi, jobs
-from .serializers import multiSerializer, jobSerializer
+from .models import multi, jobs, Tag
+from .serializers import multiSerializer, jobSerializer, TagSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets, mixins
@@ -31,6 +31,11 @@ class multiViewSet(viewsets.ModelViewSet):
 class jobViewSet(viewsets.ModelViewSet):
     serializer_class = jobSerializer
     queryset = jobs.objects.all()
+
+
+class TagViewSet(viewsets.ModelViewSet):
+    serializer_class = TagSerializer
+    queryset = Tag.objects.all()
 
 
 class JobListCreateApiView(APIView):
