@@ -29,8 +29,27 @@ class multiViewSet(viewsets.ModelViewSet):
 
 
 class jobViewSet(viewsets.ModelViewSet):
+    serializer_class = jobSerializer
     queryset = jobs.objects.all()
-    serializer_class = jobSerializer(many=True)
+
+
+class JobListCreateApiView(APIView):
+    def get(self, request):
+        job = jobs.objects.all()
+        serializer = jobSerializer(job, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = jobSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# class jobViewSet(viewsets.ModelViewSet):
+#     queryset = jobs.objects.all()
+#     serializer_class = jobSerializer(many=True)
 
 
 class multi2ViewSet(generics.ListCreateAPIView):
