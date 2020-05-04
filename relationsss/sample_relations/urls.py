@@ -12,6 +12,8 @@ router.register('job', jobViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    # path("job/", JobListCreateApiView.as_view(), name="job_list"),
+
     # path('multi/s/', multi2ViewSet.as_view()),
     # path('multi/s/', multiViewSet.as_view({'post': 'list'})),
     # path('multi/sｓ/', multiViewSet.as_view({'get': 'list'})),
