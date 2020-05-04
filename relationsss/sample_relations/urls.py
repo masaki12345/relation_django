@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from .views import multiViewSet, multi2ViewSet, multi3ViewSet, multi4ViewSet, jobViewSet
+from .views import multiViewSet, multi2ViewSet, multi3ViewSet, multi4ViewSet, jobViewSet, TagViewSet
 # from .views import multiListCreateApiView
 
 router = routers.DefaultRouter()
 router.register('multi', multiViewSet)
 router.register('job', jobViewSet)
+router.register('tag', TagViewSet)
 # router.register('ps', multi3ViewSet)
 
 
